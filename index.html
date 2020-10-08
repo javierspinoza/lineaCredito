@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" >    
+</head>
+<body>
+    <div id='app'>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+
+                    <h2>Lineas de crédito</h2>
+                    <h5>Seleccione método de crédito</h5>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" v-model="tipo">
+                        <label class="form-check-label" for="inlineRadio1">Libre inversión</label>
+                    </div> 
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" v-model="tipo">
+                        <label class="form-check-label" for="inlineRadio2">Libranza</label>
+                    </div>
+
+                    <div v-show="tipo==1 || tipo==2">
+                        <h5>Ingrese su nombre:</h5>
+                            <input type="text"class="col-md-6" class="form control"placeholder="ingrese su nombre" v-model="nom">
+                        <h5>Cantidad a solicitar prestado:</h5>
+                            <input type="number"class="col-md-6" class="form control"placeholder="ingrese cantidad" v-model="cant">
+                        <h5>Número de cuotas:</h5>
+                            <input type="number"class="col-md-6" class="form control"placeholder="ingrese cantidad" v-model="cuota">  
+                            <br>
+                            <div>
+                              <input type="button"value="Procesar"class="btn btn-success" v-on:click="procesar">                                          
+                            </div>
+                    </div>                    
+                </div>                                                                                         
+                <div class="col-md-12 col-xs-12">
+                    <h3>Información del crédito</h3>  
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <td>Nombre</td>
+                                <td>Saldo restante a pagar</td>
+                                <td>Número de cuotas</td>
+                                <td>Total intereses</td>                                                                                               
+                                <td>Total cada cuota</td>                                                                                               
+                                                                                                                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="objeto in arrayDatos" v-bind:style="objeto.total>6000000?'color:red':'color:green'">
+                                <td v-text="objeto.nom"></td>
+                                <td v-text="objeto.cant"></td>
+                                <td v-text="objeto.nuC"></td>
+                                <td v-text="objeto.tInt"></td>                                                                
+                                <td v-text="objeto.total"></td>                                                                                                                                   
+                            </tr>
+                            <tr style="background-color: darkgray;">
+                                <td align="right"><strong>Total</strong></td>
+                                <td>{{total1}}</td>                                                 
+                                <td>{{total2}}</td>                                                 
+                                <td>{{total3}}</td>                                                 
+                                <td>{{total4}}</td>                                                 
+                            </tr>
+                        </tbody>
+                    </table>      
+                    <!-- <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <td>Nombre</td>
+                                <td>Cantidad prestada</td>
+                                                                                                                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="objeto in arrayDatos2" v-bind:style="objeto.total>6000000?'color:red':'color:green'">
+                                <td v-text="objeto.nom"></td>
+                                <td v-text="objeto.cant"></td>
+                                                                                           
+                            </tr>
+                        </tbody>
+                    </table>       -->
+                </div>                                 
+            </div>
+        </div>
+    </div> 
+
+    
+    
+
+</body>
+
+<script src="js/vue.js"></script> 
+<script src="js/sweetalert2.all.min.js"></script> 
+<script src="js/main.js"></script> 
+</html>
